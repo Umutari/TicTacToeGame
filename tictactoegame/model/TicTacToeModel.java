@@ -17,7 +17,7 @@ public class TicTacToeModel {
      * This method returns the character of the board (How it looks like)
      * @return 
      */
-    public char[][] playBoard()
+    public char[][] drawBoard()
     {
         char [][] board={{' ', '|', ' ', '|', ' '},
             {'-', '+', '-', '+', '-'},
@@ -33,7 +33,7 @@ public class TicTacToeModel {
      * @param user
      * @return 
      */
-    public char initBoard(int pos, String user)
+    public char[][] initBoard(int pos, String user)
     {
         char [][] board={{' ', '|', ' ', '|', ' '},
             {'-', '+', '-', '+', '-'},
@@ -50,40 +50,40 @@ public class TicTacToeModel {
         {
             playerSymbol='O'; 
         }
-        
+//        System.out.print(board[0][0]=playerSymbol);
         switch(pos)
         {
             case 1:
-                return(board[0][0]=playerSymbol);
-//                break;
+                board[0][0]=playerSymbol;
+                break;
             case 2:
                 board[0][2]=playerSymbol;
                 break;
             case 3:
-                this.playBoard()[0][4]=playerSymbol;
+                board[0][4]=playerSymbol;
                 break;
             case 4:
-                this.playBoard()[2][0]=playerSymbol;
+                board[2][0]=playerSymbol;
                 break;
             case 5:
-                this.playBoard()[2][2]=playerSymbol;
+                board[2][2]=playerSymbol;
                 break;
             case 6:
-                this.playBoard()[2][4]=playerSymbol;
+                board[2][4]=playerSymbol;
                 break;
             case 7:
-                this.playBoard()[4][0]=playerSymbol;
+                board[4][0]=playerSymbol;
                 break;
             case 8:
-                this.playBoard()[4][2]=playerSymbol;
+                board[4][2]=playerSymbol;
                 break;
             case 9:
-                this.playBoard()[4][4]=playerSymbol;
+                board[4][4]=playerSymbol;
                 break;
             default:
                 break;
         }
-        return 1;
+        return board;
     }
     
     public int charPlacement()

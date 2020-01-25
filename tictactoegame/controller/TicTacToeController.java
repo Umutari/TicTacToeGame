@@ -31,7 +31,7 @@ public class TicTacToeController {
      */
     public void printBoard()
     {
-        board.Board(boardchar.playBoard());
+        board.Board(boardchar.drawBoard());
         
     }
     
@@ -45,7 +45,6 @@ public class TicTacToeController {
         System.out.println("Enter your position from 1 - 9");
         int placement=scan.nextInt();
         String player="player";
-        System.out.print(boardchar.initBoard(placement,player));
-        board.Board(boardchar.playBoard());
+        board.Board(boardchar.initBoard(placement,player));
     }
 }
