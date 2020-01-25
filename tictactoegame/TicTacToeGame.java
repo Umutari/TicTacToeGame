@@ -22,6 +22,8 @@ public class TicTacToeGame {
         TicTacToeModel model = new TicTacToeModel();
         TicTacToeController controller = new TicTacToeController(view, model); 
         controller.printBoard();
+        controller.position();
+        
     }
     
 }

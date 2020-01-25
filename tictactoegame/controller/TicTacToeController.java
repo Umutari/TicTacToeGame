@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tictactoegame.controller;
+import java.util.Scanner;
 import tictactoegame.view.Gameboard;
 import tictactoegame.model.TicTacToeModel;
 /**
@@ -12,16 +13,16 @@ import tictactoegame.model.TicTacToeModel;
  */
 public class TicTacToeController {
     TicTacToeModel boardchar;
-    Gameboard playboard;
+    Gameboard board;
     
     /**
      * This is a constructor
-     * @param playboard
+     * @param board
      * @param boardchar 
      */
-    public TicTacToeController(Gameboard playboard,TicTacToeModel boardchar)
+    public TicTacToeController(Gameboard board,TicTacToeModel boardchar)
     {
-        this.playboard=playboard;
+        this.board=board;
         this.boardchar=boardchar;
     }
     
@@ -30,7 +31,21 @@ public class TicTacToeController {
      */
     public void printBoard()
     {
-        playboard.Board(boardchar.playBoard());
+        board.Board(boardchar.playBoard());
         
+    }
+    
+    /**
+     * This method places the character into the position the player has played
+     * 
+    */
+    public void position()
+    {
+        Scanner scan =new Scanner(System.in);
+        System.out.println("Enter your position from 1 - 9");
+        int placement=scan.nextInt();
+        String player="player";
+        System.out.print(boardchar.initBoard(placement,player));
+        board.Board(boardchar.playBoard());
     }
 }
