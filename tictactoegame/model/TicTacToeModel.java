@@ -5,6 +5,7 @@
  */
 package tictactoegame.model;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -13,44 +14,40 @@ import java.util.Scanner;
  */
 public class TicTacToeModel {
     
+    char[][] board={{' ', '|', ' ', '|', ' '},
+            {'-', '+', '-', '+', '-'},
+            {' ', '|', ' ', '|', ' '},
+            {'-', '+', '-', '+', '-'},
+            {' ', '|', ' ', '|', ' '}};
+    
     /**
      * This method returns the character of the board (How it looks like)
      * @return 
      */
     public char[][] drawBoard()
     {
-        char [][] board={{' ', '|', ' ', '|', ' '},
-            {'-', '+', '-', '+', '-'},
-            {' ', '|', ' ', '|', ' '},
-            {'-', '+', '-', '+', '-'},
-            {' ', '|', ' ', '|', ' '}};
-        return board;
+        return this.board;
     }
     
     /**
-     * This method initializes the board with the character X and O
+     * This method allow the Human Player to play
+     * @param board
      * @param pos
      * @param user
      * @return 
      */
-    public char[][] initBoard(int pos, String user)
+    public char[][] initBoard(char[][]board,int pos, String user)
     {
-        char [][] board={{' ', '|', ' ', '|', ' '},
-            {'-', '+', '-', '+', '-'},
-            {' ', '|', ' ', '|', ' '},
-            {'-', '+', '-', '+', '-'},
-            {' ', '|', ' ', '|', ' '}};
-        
         char playerSymbol=' ';
-        if(user.equals("player"))
-        {
-            playerSymbol='X';
+        switch (user) {
+            case "player":
+                playerSymbol='X';
+                break;
+            case "computer":
+                playerSymbol='O';
+                break; 
         }
-        else if(user.equals("cpu"))
-        {
-            playerSymbol='O'; 
-        }
-//        System.out.print(board[0][0]=playerSymbol);
+        board=this.board;
         switch(pos)
         {
             case 1:
@@ -86,12 +83,21 @@ public class TicTacToeModel {
         return board;
     }
     
-    public int charPlacement()
+    /**
+     * This method allows the Computer to play
+     * @return 
+     */
+    public int computerPlayer()
     {
-        Scanner scan =new Scanner(System.in);
-        System.out.println("Enter your position from 1 - 9");
-        int placement=scan.nextInt();
-        return placement;
-        
+        Random ram=new Random();
+        int comp=ram.nextInt(9) + 1;
+        return comp;
     }
+    
+    public String checkWinner()
+    {
+        
+        return "";
+    }
+    
 }
