@@ -15,16 +15,18 @@ public class Gameboard {
      * This method prints the board
      * @param board 
      */
-    public void Board (char[][] board)
+    public void Board (String[][] board)
     {        
-        for(char[] row : board)
+        System.out.println("----+----+---");
+        for(int i=0; i<3; i++)
+        {
+            System.out.print("| ");
+            for(int j=0;j<3;j++)
             {
-                for(char col : row)
-                {
-                    System.out.print(col);
-                }
-                System.out.println();
+                System.out.print(board[i][j] + " | ");
             }
+            System.out.println("\n----+----+---");
+        }
     }
     
 }

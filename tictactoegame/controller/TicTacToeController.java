@@ -43,12 +43,11 @@ public class TicTacToeController {
     {
         while(true)
         {
-            Scanner scan =new Scanner(System.in);
+            
             System.out.println("****YOUR TURN****");
-            System.out.println("Enter your position from 1 - 9");
-            int placement=scan.nextInt();
+            
             String player="player";
-            board.Board(boardchar.initBoard(boardchar.drawBoard(),placement,player));
+            board.Board(boardchar.initBoard(boardchar.drawBoard(),boardchar.humanPlayer(),player));
             System.out.println("****COMPUTER'S TURN****");
             board.Board(boardchar.initBoard(boardchar.drawBoard(),boardchar.computerPlayer(),"computer"));
             

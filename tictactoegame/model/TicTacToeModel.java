@@ -5,6 +5,7 @@
  */
 package tictactoegame.model;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,17 +15,15 @@ import java.util.Scanner;
  */
 public class TicTacToeModel {
     
-    char[][] board={{' ', '|', ' ', '|', ' '},
-            {'-', '+', '-', '+', '-'},
-            {' ', '|', ' ', '|', ' '},
-            {'-', '+', '-', '+', '-'},
-            {' ', '|', ' ', '|', ' '}};
+    String[][] board={{" "," ", " "},
+            {" "," ", " "},
+            {" "," ", " "}};
     
     /**
      * This method returns the character of the board (How it looks like)
      * @return 
      */
-    public char[][] drawBoard()
+    public String[][] drawBoard()
     {
         return this.board;
     }
@@ -36,49 +35,29 @@ public class TicTacToeModel {
      * @param user
      * @return 
      */
-    public char[][] initBoard(char[][]board,int pos, String user)
+    public String[][] initBoard(String[][]board,int pos, String user)
     {
-        char playerSymbol=' ';
+        String playerSymbol= "";
         switch (user) {
             case "player":
-                playerSymbol='X';
+                playerSymbol="X";
                 break;
             case "computer":
-                playerSymbol='O';
+                playerSymbol="O";
                 break; 
         }
         board=this.board;
-        switch(pos)
+        
+        int x=pos/3;
+        int y=(pos%3)-1;
+
+        if(!board[x][y].equals("X") && !board[x][y].equals("O") )
         {
-            case 1:
-                board[0][0]=playerSymbol;
-                break;
-            case 2:
-                board[0][2]=playerSymbol;
-                break;
-            case 3:
-                board[0][4]=playerSymbol;
-                break;
-            case 4:
-                board[2][0]=playerSymbol;
-                break;
-            case 5:
-                board[2][2]=playerSymbol;
-                break;
-            case 6:
-                board[2][4]=playerSymbol;
-                break;
-            case 7:
-                board[4][0]=playerSymbol;
-                break;
-            case 8:
-                board[4][2]=playerSymbol;
-                break;
-            case 9:
-                board[4][4]=playerSymbol;
-                break;
-            default:
-                break;
+            board[x][y]=playerSymbol;
+        }
+        else
+        {
+            System.out.println("Position Taken");
         }
         return board;
     }
@@ -90,8 +69,21 @@ public class TicTacToeModel {
     public int computerPlayer()
     {
         Random ram=new Random();
-        int comp=ram.nextInt(9) + 1;
+        int comp=ram.nextInt(9);
         return comp;
+    }
+    
+    public int humanPlayer()
+    {
+        Scanner scan =new Scanner(System.in);
+        System.out.println("Enter your position from 1 - 9");
+            int placement=scan.nextInt();
+            if(placement>8)
+            {
+                System.out.println("Out of bounds!!!Choose (1 - 9)");
+                placement=scan.nextInt();
+            }
+            return placement;
     }
     
     public String checkWinner()
