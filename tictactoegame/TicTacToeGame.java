@@ -19,10 +19,7 @@ public class TicTacToeGame {
     public static void main(String[] args) {
         // TODO code application logic here
         Gameboard view = new Gameboard(); 
-        TicTacToeModel model = new TicTacToeModel();
-        TicTacToeController controller = new TicTacToeController(view, model); 
-        controller.printBoard();
-        controller.position();
+//        view.requestInput();
         
     }
     

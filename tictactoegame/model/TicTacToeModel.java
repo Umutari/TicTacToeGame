@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package tictactoegame.model;
-
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -15,81 +12,50 @@ import java.util.Scanner;
  */
 public class TicTacToeModel {
     
-    String[][] board={{" "," ", " "},
+    private String[][] board;
+
+    
+    
+    //constructor
+    public TicTacToeModel()
+    {
+        String boardGame[][]={{" "," ", " "},
             {" "," ", " "},
             {" "," ", " "}};
-    
-    /**
-     * This method returns the character of the board (How it looks like)
-     * @return 
-     */
-    public String[][] drawBoard()
-    {
-        return this.board;
+        board=boardGame;
     }
     
     /**
-     * This method allow the Human Player to play
-     * @param board
-     * @param pos
-     * @param user
+     * This method gets the board
      * @return 
      */
-    public String[][] initBoard(String[][]board,int pos, String user)
+    public String[][] getBoard()
     {
-        String playerSymbol= "";
-        switch (user) {
-            case "player":
-                playerSymbol="X";
-                break;
-            case "computer":
-                playerSymbol="O";
-                break; 
-        }
-        board=this.board;
-        
-        int x=pos/3;
-        int y=(pos%3)-1;
-
-        if(!board[x][y].equals("X") && !board[x][y].equals("O") )
-        {
-            board[x][y]=playerSymbol;
-        }
-        else
-        {
-            System.out.println("Position Taken");
-        }
         return board;
     }
     
     /**
-     * This method allows the Computer to play
-     * @return 
+     * This method sets the board
+     * @param x
+     * @param y
+     * @param symbol
      */
-    public int computerPlayer()
+    public void setBoard(int x, int y, String symbol)
     {
-        Random ram=new Random();
-        int comp=ram.nextInt(9);
-        return comp;
+        board[x][y]=symbol;
     }
     
-    public int humanPlayer()
+    /**
+     * This method resets the board for the next playing session
+     */
+    public void resetBoard()
     {
-        Scanner scan =new Scanner(System.in);
-        System.out.println("Enter your position from 1 - 9");
-            int placement=scan.nextInt();
-            if(placement>8)
-            {
-                System.out.println("Out of bounds!!!Choose (1 - 9)");
-                placement=scan.nextInt();
-            }
-            return placement;
+        String boardGame[][]={{" "," ", " "},
+            {" "," ", " "},
+            {" "," ", " "}};
+        board=boardGame;
     }
     
-    public String checkWinner()
-    {
-        
-        return "";
-    }
+    
     
 }
