@@ -58,7 +58,7 @@ public class TicTacToeController {
         void onNextPlayer(int nextPlayer, String[][] board);
         
         /**
-         * calls when there is bad input
+         * called when there is a bad input
          * @param player 
          */
         void onBadInput(int player);
@@ -110,7 +110,7 @@ public class TicTacToeController {
     }
     
     /**
-     * This method allows the play to play
+     * This method allows the player to play
      * @param x
      * @param y 
      */

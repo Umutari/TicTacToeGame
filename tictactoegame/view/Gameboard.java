@@ -27,6 +27,10 @@ public class Gameboard implements InnerTicTacController{
         
     }
     
+    /**
+     * This method prints the board
+     * @param board 
+     */
     public void printBoard(String[][] board)
     {
         System.out.println("----+---+----");
@@ -41,6 +45,9 @@ public class Gameboard implements InnerTicTacController{
         }
     }
     
+    /**
+     * This method requests input from the Human player
+     */
     public void requestInput()
     {
         System.out.println("Enter your position from 1 - 9");
