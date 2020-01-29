@@ -70,7 +70,7 @@ public class Gameboard implements InnerTicTacController{
     
     @Override
     public void onWinnerEmerged(int player) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.checkWinner();
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Gameboard implements InnerTicTacController{
 
     @Override
     public void onTie() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        controller.checkForTie();
     }
 
     
