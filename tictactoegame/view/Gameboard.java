@@ -69,14 +69,23 @@ public class Gameboard implements InnerTicTacController{
     }
     
     @Override
-    public void onWinnerEmerged(int player) {
-        controller.checkWinner();
+    public void onWinnerEmerged(int player, String[][] board) {
+        printBoard(board);
+        if(player==1)
+        {
+            System.out.println("Congratulations!!, you won!");
+        }
+        else
+        {
+            System.out.println("Computer won!");
+        }
+        
     }
 
     @Override
     public void onSpaceTaken(int player) {
     
-        System.out.println("This spot is taken!! Try a different spot");
+//        System.out.println("This spot is taken!! Try a different spot");
         if(player==1)
         {
             requestInput();
@@ -104,8 +113,9 @@ public class Gameboard implements InnerTicTacController{
     }
 
     @Override
-    public void onTie() {
-        controller.checkForTie();
+    public void onTie(String[][] board) {
+        printBoard(board);
+        System.out.println("It's a tie, no winner");
     }
 
     

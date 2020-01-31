@@ -20,8 +20,6 @@ public class TicTacToeController {
     private int player=1;
     Random ram;
     
-    ArrayList<Integer>playerPositions = new ArrayList<>();
-    ArrayList<Integer>cpuPositions = new ArrayList<>();
     
     /**
      * This is a constructor
@@ -47,7 +45,7 @@ public class TicTacToeController {
          * called if a player result is a winner
          * @param player won on the game
          */
-        void onWinnerEmerged(int player);
+        void onWinnerEmerged(int player, String[][] board);
         
         /**
          * called a selected position already has a value
@@ -73,7 +71,7 @@ public class TicTacToeController {
          * called when all possible spots are filled
          * There is no winner
          */
-        void onTie();
+        void onTie(String[][] board);
         
     }
     
@@ -101,8 +99,9 @@ public class TicTacToeController {
      */
     public boolean isSpotAvailable(int position)
     {
+        position=position-1;
         int x=position/3;
-        int y=(position%3)-1;
+        int y=(position%3);
         
         if(model.getBoard()[x][y].trim().equals(""))
         {
@@ -123,18 +122,9 @@ public class TicTacToeController {
      */
     public void play(int x, int y)
     {
-        if(model.getBoard().length!=9)
-        {
-            String value=player==1?"X":"O";
-            model.setBoard(x, y, value);
-            player=player==1?2:1;
-            view.onNextPlayer(player, model.getBoard());
-        }
-        else
-        {
-            view.onWinnerEmerged(player);
-            view.onTie();
-        }
+        String value=player==1?"X":"O";
+        model.setBoard(x, y, value);
+        checkWin(player,value);
     }
     
     /**
@@ -146,56 +136,76 @@ public class TicTacToeController {
         isSpotAvailable(comp);
     }
     
-    /**
-     * This method checks for the winner
-     * @return 
-     */
-    public String checkWinner()
+    public void checkWin(int playerId, String playerCharacter)
     {
-        List topRow = Arrays.asList(1,2,3);
-        List midRow = Arrays.asList(4,5,6);
-        List botRow = Arrays.asList(7,8,9);
-        List leftCol = Arrays.asList(1,4,7);
-        List midCol = Arrays.asList(2,5,8);
-        List rightCol = Arrays.asList(3,6,9);
-        List diag1 = Arrays.asList(1,5,9);
-        List diag2 = Arrays.asList(3,5,7);
-        
-        List<List>winner = new ArrayList<>();
-        winner.add(topRow);
-        winner.add(midRow);
-        winner.add(botRow);
-        winner.add(leftCol);
-        winner.add(midCol);
-        winner.add(rightCol);
-        winner.add(diag1);
-        winner.add(diag2);
-        
-        for(List l: winner)
+        String[][] board = model.getBoard();
+        if(board[0][0].equals(playerCharacter)&&board[0][1].equals(playerCharacter)&&board[0][2].equals(playerCharacter))
         {
-            if(playerPositions.containsAll(l))
+            this.view.onWinnerEmerged(player,board);
+        }
+        else if(board[1][0].equals(playerCharacter)&&board[1][1].equals(playerCharacter)&&board[1][2].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else if(board[2][0].equals(playerCharacter)&&board[2][1].equals(playerCharacter)&&board[2][2].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else if(board[0][0].equals(playerCharacter)&&board[1][0].equals(playerCharacter)&&board[2][0].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else if(board[0][1].equals(playerCharacter)&&board[1][1].equals(playerCharacter)&&board[2][1].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else if(board[0][2].equals(playerCharacter)&&board[1][2].equals(playerCharacter)&&board[2][2].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else if(board[0][0].equals(playerCharacter)&&board[1][1].equals(playerCharacter)&&board[2][2].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else if(board[2][0].equals(playerCharacter)&&board[1][1].equals(playerCharacter)&&board[0][2].equals(playerCharacter))
+        {
+            this.view.onWinnerEmerged(player, board);
+        }
+        else
+        {
+            if(isBoardFull(player))
             {
-                return "COngratulations you won!!";
+                
+                this.view.onTie(board);
             }
-            else if(cpuPositions.containsAll(l))
+            else
             {
-                return "Sorry!!, Computer Won";
+                player=player==1?2:1;
+                this.view.onNextPlayer(player, board);
             }
         }
-        
-        return "";
     }
     
+    
     /**
-     * This method is called once the board is full and there is no winner
+     * This method checks if the board is full
+     * @param playerId
      * @return 
      */
-    public String checkForTie()
+    public boolean isBoardFull(int playerId)
     {
-        if(playerPositions.size()+cpuPositions.size()==9)
+        for(int i=0;i<3;i++)
         {
-            return "It is a tie";
+            for(int j=0;j<3;j++)
+            {
+                if(model.getBoard()[i][j].trim().isEmpty())
+                {
+                    return false;
+                }
+            }
         }
-        return "";
+        
+       
+        return true;
     }
 }
