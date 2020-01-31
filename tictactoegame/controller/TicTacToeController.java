@@ -40,7 +40,7 @@ public class TicTacToeController {
         
         /**
          * called if a player result is a winner
-         * @param player won on the game
+         * @param player won on the game 
          * @param board
          */
         void onWinnerEmerged(int player, String[][] board);
@@ -127,7 +127,7 @@ public class TicTacToeController {
     }
     
     /**
-     * This method allows the Computer to play
+     * This method allows the Computer to randomly choose a spot
      */
     public void computerPlayer()
     {
@@ -212,7 +212,7 @@ public class TicTacToeController {
     }
     
     /**
-     * this method is called when the player wants to play again
+     * This method is called when the player wants to play again
      * @param restart
      * @return 
      */

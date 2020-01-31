@@ -94,6 +94,7 @@ public class Gameboard implements InnerTicTacController{
         else
         {
             System.out.println("Computer won!");
+            restart();
         }
         
     }
