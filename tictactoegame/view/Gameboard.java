@@ -55,6 +55,21 @@ public class Gameboard implements InnerTicTacController{
             controller.validate(placement, this);
     }
     
+    public void restart()
+    {
+        System.out.println("Game Over!!! Restart? Type Y for YES or N for NO");
+        String restart;
+        restart = scan.next();
+        if(controller.restart(restart))
+        {
+            requestInput();
+        }
+        else
+        {
+            System.out.println("Thanks for playing");
+        }
+    }
+    
     @Override
     public void onBoardReady(String[][]  board) {
         printBoard(board);
@@ -73,7 +88,8 @@ public class Gameboard implements InnerTicTacController{
         printBoard(board);
         if(player==1)
         {
-            System.out.println("Congratulations!!, you won!");
+            System.out.println("Congratulations!! You won!");
+            restart();
         }
         else
         {
@@ -116,6 +132,7 @@ public class Gameboard implements InnerTicTacController{
     public void onTie(String[][] board) {
         printBoard(board);
         System.out.println("It's a tie, no winner");
+        restart();
     }
 
     

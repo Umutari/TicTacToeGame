@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package tictactoegame.controller;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import tictactoegame.view.Gameboard;
 import tictactoegame.model.TicTacToeModel;
@@ -44,6 +41,7 @@ public class TicTacToeController {
         /**
          * called if a player result is a winner
          * @param player won on the game
+         * @param board
          */
         void onWinnerEmerged(int player, String[][] board);
         
@@ -70,6 +68,7 @@ public class TicTacToeController {
         /**
          * called when all possible spots are filled
          * There is no winner
+         * @param board
          */
         void onTie(String[][] board);
         
@@ -83,9 +82,9 @@ public class TicTacToeController {
     public void validate(int input, Gameboard board)
     {
         if(input<=0 || input>9)
-            {
-                board.onBadInput(0);
-            }
+        {
+            board.onBadInput(0);
+        }
         else
         {
             isSpotAvailable(input);
@@ -124,7 +123,7 @@ public class TicTacToeController {
     {
         String value=player==1?"X":"O";
         model.setBoard(x, y, value);
-        checkWin(player,value);
+        checkWinner(player,value);
     }
     
     /**
@@ -136,7 +135,12 @@ public class TicTacToeController {
         isSpotAvailable(comp);
     }
     
-    public void checkWin(int playerId, String playerCharacter)
+    /**
+     * This method is called when checking for the winner
+     * @param playerId
+     * @param playerCharacter 
+     */
+    public void checkWinner(int playerId, String playerCharacter)
     {
         String[][] board = model.getBoard();
         if(board[0][0].equals(playerCharacter)&&board[0][1].equals(playerCharacter)&&board[0][2].equals(playerCharacter))
@@ -175,7 +179,6 @@ public class TicTacToeController {
         {
             if(isBoardFull(player))
             {
-                
                 this.view.onTie(board);
             }
             else
@@ -205,7 +208,25 @@ public class TicTacToeController {
             }
         }
         
-       
         return true;
     }
+    
+    /**
+     * this method is called when the player wants to play again
+     * @param restart
+     * @return 
+     */
+    public boolean restart(String restart)
+    {
+        if(restart.equalsIgnoreCase("Y"))
+        {
+            model.resetBoard();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+        
 }
