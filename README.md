@@ -12,9 +12,11 @@ Screen shots
 
 # How to setup the project
 
-- Clone the following: git clone git@github.com/Umutari/TicTacToeGame.git to your computer
-- [Download](https://www.usitility.com/java-virtual-machine/download-windows-10) and Install JVM to run and compile java program
+- Clone the following: 'git clone git@github.com/Umutari/TicTacToeGame.git' to your computer
+- [Download and Install JVM](https://www.usitility.com/java-virtual-machine/download-windows-10) to run and compile java program
 - Run the program through the IDE or commandline 
+- Navigate to where you have saved the file
+- Use javac TicTacToe/TicTacToe.java 
 
 
 # How to use?
