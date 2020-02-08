@@ -10,6 +10,11 @@ I used netbeans to build my code
 
 Screen shots
 
+# How to setup the project
+Clone the following: git clone git@github.com/Umutari/TicTacToeGame.git to your computer
+[Download] https://www.usitility.com/java-virtual-machine/download-windows-10 and Install JVM to run and compile java program
+Run the program through the IDE or commandline 
+
 
 # How to use?
 The user is asked to play after choosing position 1 - 9 
